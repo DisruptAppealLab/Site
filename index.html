@@ -7,82 +7,533 @@
     <meta name="description" content="Disrupt Appeal - Building culture through design, visuals, and storytelling. Specializing in photography, design, film, and strategic consulting.">
     <meta name="keywords" content="design, photography, film, strategy, creative agency, visual storytelling">
     <meta name="author" content="Disrupt Appeal">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Disrupt Appeal">
+    <meta property="og:description" content="Building culture through design, visuals, and storytelling.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://disruptappeal.com">
+    <meta property="og:image" content="https://disruptappeal.com/images/og-image.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Disrupt Appeal">
+    <meta name="twitter:description" content="Building culture through design, visuals, and storytelling.">
+    <meta name="twitter:image" content="https://disruptappeal.com/images/twitter-image.jpg">
+    
     <title>Disrupt Appeal</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+        }
+        
+        /* Typography */
+        h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 4rem;
+            }
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+        }
+        
+        @media (min-width: 768px) {
+            p {
+                font-size: 1.25rem;
+            }
+        }
+        
+        /* Layout */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        /* Navigation */
+        header {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        
+        nav {
+            padding: 1.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #a0a0a0;
+        }
+        
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 1200px;
+            margin-bottom: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .services-grid {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+        }
+        
+        .service-card {
+            background-color: #1a1a1a;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .service-card:hover {
+            background-color: #2a2a2a;
+        }
+        
+        .code-shop {
+            background-color: #1a1a1a;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 1.5rem;
+        }
+        
+        /* On smaller screens, align text left like the other cards */
+        .code-shop h2 {
+            text-align: left;
+        }
+        
+        /* On larger screens, center the text */
+        @media (min-width: 1024px) {
+            .code-shop h2 {
+                text-align: center;
+            }
+        }
+        
+        .code-shop:hover {
+            background-color: #2a2a2a;
+        }
+        
+        /* Form */
+        form {
+            width: 100%;
+            max-width: 28rem;
+        }
+        
+        input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 0.75rem;
+            color: #fff;
+        }
+        
+        button {
+            width: 100%;
+            padding: 1rem;
+            background-color: #fff;
+            color: #000;
+            border: none;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #e0e0e0;
+        }
+        
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            background-color: #1a1a1a;
+            border-radius: 1rem;
+            padding: 2rem;
+            width: 100%;
+            max-width: 36rem;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.95);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .close-button {
+            background: none;
+            border: none;
+            color: #a0a0a0;
+            cursor: pointer;
+            width: auto;
+            padding: 0;
+        }
+        
+        .close-button:hover {
+            color: #fff;
+        }
+        
+        .modal-footer {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .navigation-button {
+            width: auto;
+            padding: 0.5rem 1rem;
+        }
+        
+        /* Helper classes */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        /* Hide header when scrolling down */
+        .header-hidden {
+            transform: translateY(-100%);
+        }
+
+        /* Hide scrollbar when modal is open */
+        .no-scroll {
+            overflow: hidden;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 0.875rem;
+        }
+    </style>
 </head>
-<body class="bg-black text-white font-sans">
+<body>
     <!-- Header with Navigation -->
-    <header>
-        <nav class="fixed w-full p-6 flex justify-center gap-8">
-            <a href="#design" class="text-sm uppercase tracking-wider hover:text-gray-400">Design</a>
-            <a href="#photography" class="text-sm uppercase tracking-wider hover:text-gray-400">Photography</a>
-            <a href="#film" class="text-sm uppercase tracking-wider hover:text-gray-400">Film</a>
-            <a href="#strategy" class="text-sm uppercase tracking-wider hover:text-gray-400">Strategy</a>
+    <header id="site-header">
+        <nav role="navigation">
+            <div class="nav-links">
+                <a href="#photography">Photography</a>
+                <a href="#design">Design</a>
+                <a href="#film">Film</a>
+                <a href="#strategy">Strategy</a>
+            </div>
         </nav>
     </header>
 
     <main>
         <!-- Hero Section with Services -->
-        <section class="min-h-screen flex items-center justify-center flex-col p-10">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">Disrupt Appeal</h1>
-            <p class="text-lg md:text-xl max-w-xl text-center mb-10">
+        <section>
+            <h1 class="text-center">Disrupt Appeal</h1>
+            <p class="text-center" style="max-width: 36rem; margin-bottom: 2.5rem;">
                 Building culture through design, visuals, and storytelling.
             </p>
 
-            <div class="w-full max-w-5xl">
-                <!-- Services Grid - Responsive layout with 1 column on mobile, 2 on tablet, 4 on desktop -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-                    <div class="bg-gray-900 p-6 rounded-2xl shadow-lg">
-                        <h2 class="text-xl">📸 Photography</h2>
+            <div class="container">
+                <div class="services-grid">
+                    <div class="service-card" data-modal="photography" data-index="1">
+                        <h2>📸 Photography</h2>
                     </div>
-                    <div class="bg-gray-900 p-6 rounded-2xl shadow-lg">
-                        <h2 class="text-xl">🎨 Design</h2>
+                    <div class="service-card" data-modal="design" data-index="2">
+                        <h2>🎨 Design</h2>
                     </div>
-                    <div class="bg-gray-900 p-6 rounded-2xl shadow-lg">
-                        <h2 class="text-xl">🎥 Film</h2>
+                    <div class="service-card" data-modal="film" data-index="3">
+                        <h2>🎥 Film</h2>
                     </div>
-                    <div class="bg-gray-900 p-6 rounded-2xl shadow-lg">
-                        <h2 class="text-xl">💡 Strategy</h2>
+                    <div class="service-card" data-modal="strategy" data-index="4">
+                        <h2>💡 Strategy</h2>
                     </div>
                 </div>
 
-                <!-- Code Shop Section - Centered on desktop, left-aligned on mobile -->
-                <a href="#code-shop" class="bg-gray-900 p-6 rounded-2xl shadow-lg w-full lg:flex lg:items-center lg:justify-center block">
-                    <h2 class="text-xl">💻 Code Shop</h2>
-                </a>
+                <div class="code-shop" data-modal="code-shop" data-index="5">
+                    <h2>💻 Code Shop</h2>
+                </div>
             </div>
         </section>
 
-        <!-- Contact Form Section with Accessibility Features -->
-        <section id="contact" class="min-h-screen flex items-center justify-center flex-col p-10">
-            <form class="w-full max-w-md">
-                <!-- Accessible form inputs with visually hidden labels -->
+        <!-- Contact Form Section -->
+        <section id="contact">
+            <form action="https://formspree.io/f/your-form-id" method="POST">
                 <label for="name" class="sr-only">Name</label>
                 <input 
                     id="name"
                     type="text" 
+                    name="name"
                     placeholder="Name" 
                     required 
-                    class="w-full mb-4 p-4 bg-gray-900 rounded-xl border border-gray-800"
                 >
                 <label for="email" class="sr-only">Email</label>
                 <input 
                     id="email"
                     type="email" 
+                    name="email"
                     placeholder="Email" 
                     required 
-                    class="w-full mb-4 p-4 bg-gray-900 rounded-xl border border-gray-800"
                 >
-                <button 
-                    type="submit" 
-                    class="w-full p-4 bg-white text-black rounded-xl hover:bg-gray-200 transition-colors"
-                >
-                    Send Message
-                </button>
+                <button type="submit">Send Message</button>
             </form>
         </section>
     </main>
 
-    <footer class="p-6 text-center text-sm">© 2025 Disrupt Appeal</footer>
+    <!-- Modal Overlay -->
+    <div id="modal-overlay" class="modal-overlay" role="dialog" aria-modal="true">
+        <!-- Modal Content -->
+        <div class="modal-content" role="document">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h2 id="modal-title"></h2>
+                <button id="close-modal" class="close-button" aria-label="Close modal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 6L6 18"></path>
+                        <path d="M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Modal Content -->
+            <div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <span id="modal-counter"></span>
+                <div class="navigation-buttons">
+                    <button id="prev-button" class="navigation-button">
+                        Back
+                    </button>
+                    <button id="next-button" class="navigation-button">
+                        Next
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>© 2025 Disrupt Appeal</footer>
+
+    <script>
+        // Modal data
+        const modals = {
+            photography: { title: 'Photography', next: 'design', prev: 'code-shop', index: 1 },
+            design: { title: 'Design', next: 'film', prev: 'photography', index: 2 },
+            film: { title: 'Film', next: 'strategy', prev: 'design', index: 3 },
+            strategy: { title: 'Strategy', next: 'code-shop', prev: 'film', index: 4 },
+            'code-shop': { title: 'Code Shop', next: 'photography', prev: 'strategy', index: 5 }
+        };
+        
+        // State
+        let currentModal = null;
+        let currentIndex = 0;
+        let lastScroll = 0;
+        
+        // DOM Elements
+        const header = document.getElementById('site-header');
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalTitle = document.getElementById('modal-title');
+        const modalCounter = document.getElementById('modal-counter');
+        const closeModalBtn = document.getElementById('close-modal');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const serviceCards = document.querySelectorAll('.service-card, .code-shop');
+        
+        // Functions
+        function openModal(modalId, index) {
+            currentModal = modalId;
+            currentIndex = index;
+            
+            // Update modal content
+            modalTitle.textContent = modals[modalId].title;
+            modalCounter.textContent = `${index} of 5`;
+            
+            // Show modal
+            modalOverlay.classList.add('active');
+            document.body.classList.add('no-scroll');
+            
+            // Set aria attributes
+            modalOverlay.setAttribute('aria-label', modals[modalId].title);
+        }
+        
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+            currentModal = null;
+        }
+        
+        function goToNextModal() {
+            if (!currentModal) return;
+            
+            const nextModalId = modals[currentModal].next;
+            openModal(nextModalId, modals[nextModalId].index);
+        }
+        
+        function goToPrevModal() {
+            if (!currentModal) return;
+            
+            const prevModalId = modals[currentModal].prev;
+            openModal(prevModalId, modals[prevModalId].index);
+        }
+        
+        // Event Listeners
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > lastScroll) {
+                // Scrolling down
+                header.classList.add('header-hidden');
+            } else {
+                // Scrolling up
+                header.classList.remove('header-hidden');
+            }
+            
+            lastScroll = currentScroll;
+        });
+        
+        // Service card click events
+        serviceCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const modalId = card.getAttribute('data-modal');
+                const index = parseInt(card.getAttribute('data-index'));
+                openModal(modalId, index);
+            });
+        });
+        
+        // Modal events
+        closeModalBtn.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', event => {
+            if (event.target === modalOverlay) {
+                closeModal();
+            }
+        });
+        
+        nextButton.addEventListener('click', goToNextModal);
+        prevButton.addEventListener('click', goToPrevModal);
+        
+        // Keyboard events
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && currentModal) {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html> 
